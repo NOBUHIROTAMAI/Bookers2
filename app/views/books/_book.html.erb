@@ -1,0 +1,65 @@
+
+  <% if book.errors.any? %>
+  <div id="error_explanation">
+      <h3><%= book.errors.count %> errors prohibited this book from being saved:</h3>
+    <ul>
+      <% book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+      <div class="col-md-3 ">
+       <table class="table table-user">
+        <h2>User info</h2>
+        <thead>
+          <tr>
+            <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" ,size:'63x63'%><table class="table">
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>name</th>
+            <th><%= @user.name %></th>
+          </tr>
+          <tr>
+            <th>introduction</th>
+            <th><%= @user.introduction %></th>
+          </tr>
+          </table>
+          <tr>
+            <div class="row">
+            <th colspan="2">
+              <%= link_to edit_user_path(@user), class:"btn btn-outline-secondary btn-block" do %>
+              <span class="fas fa-user-cog" aria-hidden="true"></span>
+            <% end %>
+            </th>
+            </div>
+          </tr>
+        </tbody>
+      </table>
+
+
+
+       <h2>New book</h2>
+
+      <!-- form_with部分 -->
+      <%= form_with model:book, local:true do |f| %>
+      <div id="field_with_errors">
+         <div  class="form-group">
+          <%= f.label :title %><br>
+          <%= f.text_field :title %>
+         </div>
+         <div class="form-group">
+          <%= f.label :Opinion %><br>
+          <%= f.text_area :body %>
+         </div>
+      </div>
+        <div class="actions">
+          <%= f.submit "Create Book",class: "btn btn-success" %>
+        </div>
+      <% end %>
+      </div>
+
